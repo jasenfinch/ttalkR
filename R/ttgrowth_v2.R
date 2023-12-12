@@ -138,5 +138,6 @@ ttGrowth <- function(mydata_4D, plot_label) { #this is a beta function
   #create a data frame for output
   df_ttGrowth <- data.frame(mydata_4D$Timestamp, mydata_4D$dendro, mydata_4D$TT_ID)
   colnames(df_ttGrowth) <- c("Timestamp", "phi", "TT_ID")
-  .GlobalEnv$df_ttGrowth <- df_ttGrowth
+
+  return(df_ttGrowth)
 }
