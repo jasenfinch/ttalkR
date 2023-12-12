@@ -306,8 +306,6 @@ ttScrape <- function(ID, subset_days) {
   } else {mydata_4B <- mydata_4B}
   mydata_4B <- mydata_4B %>% drop_na(Timestamp, TT_ID)
   mydata_4B <- mydata_4B %>% distinct(TT_ID, Timestamp, .keep_all = TRUE) #remove duplicates
-  .GlobalEnv$mydata_4B <- mydata_4B
-
 
   if (subset_days != "all"){
     tt_begin <- mydata_4D$Timestamp[length(mydata_4D$Timestamp)] - (24*60*60*subset_days)
@@ -317,7 +315,6 @@ ttScrape <- function(ID, subset_days) {
   } else {mydata_4D <- mydata_4D}
   mydata_4D <- mydata_4D %>% drop_na(Timestamp, TT_ID)
   mydata_4D <- mydata_4D %>% distinct(TT_ID, Timestamp, .keep_all = TRUE)#remove duplicates
-  .GlobalEnv$mydata_4D <- mydata_4D
 
   if (subset_days != "all"){
     tt_begin <- mydata_49$Timestamp[length(mydata_49$Timestamp)] - (24*60*60*subset_days)
@@ -327,8 +324,6 @@ ttScrape <- function(ID, subset_days) {
   } else {mydata_49 <- mydata_49}
   mydata_49 <- mydata_49 %>% drop_na(Timestamp, TT_ID)
   mydata_49 <- mydata_49 %>% distinct(TT_ID, Timestamp, .keep_all = TRUE)#remove duplicates
-  .GlobalEnv$mydata_49 <- mydata_49
-
 
   if (subset_days != "all"){
     tt_begin <- mydata_4C$Timestamp[length(mydata_4C$Timestamp)] - (24*60*60*subset_days)
@@ -338,5 +333,11 @@ ttScrape <- function(ID, subset_days) {
   } else {mydata_4C <- mydata_4C}
   mydata_4C <- mydata_4C %>% drop_na(Timestamp, TT_ID)
   mydata_4C <- mydata_4C %>% distinct(Timestamp, .keep_all = TRUE)#remove duplicates
-  .GlobalEnv$mydata_4C <- mydata_4C
+
+  list(
+    records = mydata_4B,
+    sensors = mydata_4D,
+    spectrometers = mydata_49,
+    RSSI = mydata_4C
+  )
 }
