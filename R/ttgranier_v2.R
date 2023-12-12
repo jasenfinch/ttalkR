@@ -1,6 +1,6 @@
 # fix ttgranier function with Sahla one
 
-library(ttalkR)
+#library(ttalkR)
 library(prospectr)
 
 # Rename and edit the function
